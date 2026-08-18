@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+</head>
+<body>
+
+<h2>Student Registration</h2>
+
+<input type="text" id="studentName" placeholder="Student Name">
+<input type="text" id="regNo" placeholder="Register Number">
+<input type="text" id="department" placeholder="Department">
+
+<br><br>
+
+<button onclick="addStudent()">Add Student</button>
+<button onclick="removeStudent()">Remove Selected</button>
+<button onclick="clearAll()">Clear All</button>
+
+<h3>Student List</h3>
+
+<ul id="studentList"></ul>
+
+<script>
+function addStudent() {
+
+    let name = document.getElementById("studentName").value;
+    let reg = document.getElementById("regNo").value;
+    let dept = document.getElementById("department").value;
+
+    if (name === "" || reg === "" || dept === "") {
+        alert("Please fill all fields");
+        return;
+    }
+
+    let li = document.createElement("li");
+
+    li.textContent = name + " - " + reg + " - " + dept;
+
+    li.onclick = function () {
+        this.style.backgroundColor = "yellow";
+        this.setAttribute("data-selected", "true");
+    };
+
+    document.getElementById("studentList").appendChild(li);
+
+    document.getElementById("studentName").value = "";
+    document.getElementById("regNo").value = "";
+    document.getElementById("department").value = "";
+}
+
+function removeStudent() {
+
+    let list = document.getElementById("studentList");
+    let items = list.children;
+
+    for (let i = 0; i < items.length; i++) {
+
+        if (items[i].getAttribute("data-selected") === "true") {
+            list.removeChild(items[i]);
+            return;
+        }
+    }
+
+    alert("Select a student first");
+}
+
+function clearAll() {
+    document.getElementById("studentList").innerHTML = "";
+}
+</script>
+
+</body>
+</html>

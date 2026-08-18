@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Browser Information</title>
+</head>
+<body>
+
+<h2>Browser Information Dashboard</h2>
+
+<p id="url"></p>
+<p id="language"></p>
+<p id="status"></p>
+<p id="width"></p>
+<p id="height"></p>
+<p id="location"></p>
+<p id="innerWidth"></p>
+<p id="innerHeight"></p>
+<p id="scrollX"></p>
+<p id="scrollY"></p>
+
+<button onclick="scrollPage()">Scroll Down</button>
+<button onclick="resizeWindow()">Resize Info</button>
+
+<script>
+
+document.getElementById("url").textContent =
+    "Current URL: " + window.location.href;
+
+document.getElementById("language").textContent =
+    "Browser Language: " + navigator.language;
+
+document.getElementById("status").textContent =
+    "Online Status: " + (navigator.onLine ? "Online" : "Offline");
+
+document.getElementById("width").textContent =
+    "Screen Width: " + screen.width;
+
+document.getElementById("height").textContent =
+    "Screen Height: " + screen.height;
+
+document.getElementById("location").textContent =
+    "Location: " + window.location.href;
+
+document.getElementById("innerWidth").textContent =
+    "Window Inner Width: " + window.innerWidth;
+
+document.getElementById("innerHeight").textContent =
+    "Window Inner Height: " + window.innerHeight;
+
+document.getElementById("scrollX").textContent =
+    "Scroll X: " + window.scrollX;
+
+document.getElementById("scrollY").textContent =
+    "Scroll Y: " + window.scrollY;
+
+function scrollPage() {
+    window.scrollTo(0, 500);
+}
+
+function resizeWindow() {
+    alert(
+        "Current Window Size: " +
+        window.innerWidth + " x " +
+        window.innerHeight
+    );
+}
+
+window.addEventListener("scroll", function () {
+
+    document.getElementById("scrollX").textContent =
+        "Scroll X: " + window.scrollX;
+
+    document.getElementById("scrollY").textContent =
+        "Scroll Y: " + window.scrollY;
+
+});
+
+</script>
+
+<div style="height:1000px;"></div>
+
+</body>
+</html>
