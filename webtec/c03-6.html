@@ -1,0 +1,52 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Date;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class WelcomeServlet extends HttpServlet {
+
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
+
+        out.println("<html>");
+        out.println("<head><title>Welcome</title></head>");
+        out.println("<body>");
+
+        out.println("<h1>Welcome to Student Portal</h1>");
+
+        out.println("<h2>Student Name: Vishal</h2>");
+        out.println("<h3>Course: B.Tech Information Technology</h3>");
+
+        out.println("<p>Current Date and Time: "
+                + new Date() + "</p>");
+
+        out.println("</body>");
+        out.println("</html>");
+    }
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <servlet-class>WelcomeServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>WelcomeServlet</servlet-name>
+        <url-pattern>/welcome</url-pattern>
+    </servlet-mapping>
+
+</web-app>
