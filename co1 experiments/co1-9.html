@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Network Protocol Observation</title>
+</head>
+<body>
+
+<h1>Internet Protocol Observation</h1>
+
+<p>Open Chrome Developer Tools:</p>
+
+<ol>
+    <li>Press F12</li>
+    <li>Click the Network tab</li>
+    <li>Refresh the page</li>
+    <li>Click any request</li>
+    <li>Observe URL, method, status code and file size</li>
+</ol>
+
+<button onclick="loadData()">Send Request</button>
+
+<p id="result"></p>
+
+<script>
+function loadData() {
+    fetch("https://jsonplaceholder.typicode.com/posts/1")
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("result").innerHTML =
+                "Request successful! Post title: " + data.title;
+        });
+}
+</script>
+
+</body>
+</html>
