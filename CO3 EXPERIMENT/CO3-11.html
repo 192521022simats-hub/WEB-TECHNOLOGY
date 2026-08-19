@@ -1,0 +1,87 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class VisitorCounterServlet extends HttpServlet {
+
+    // Unsafe shared variable
+    private int unsafeCounter = 0;
+
+    // Thread-safe counter
+    private AtomicInteger safeCounter = new AtomicInteger(0);
+
+    protected void doGet(HttpServletRequest request,
+                         HttpServletResponse response)
+            throws ServletException, IOException {
+
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
+
+        // Unsafe increment
+        int temp = unsafeCounter;
+
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+
+        unsafeCounter = temp + 1;
+
+        // Safe increment
+        int safeValue = safeCounter.incrementAndGet();
+
+        out.println("<html>");
+        out.println("<body>");
+
+        out.println("<h2>Concurrent Visitor Counter</h2>");
+
+        out.println("<p>Unsafe Counter: "
+                + unsafeCounter + "</p>");
+
+        out.println("<p>Thread-Safe Counter: "
+                + safeValue + "</p>");
+
+        out.println("<hr>");
+
+        out.println("<h3>Explanation</h3>");
+
+        out.println("<p>");
+        out.println("Multiple servlet threads may access shared variables simultaneously.");
+        out.println("</p>");
+
+        out.println("<p>");
+        out.println("The unsafe counter can produce incorrect results because of race conditions.");
+        out.println("</p>");
+
+        out.println("<p>");
+        out.println("AtomicInteger provides thread-safe increment operations.");
+        out.println("</p>");
+
+        out.println("</body>");
+        out.println("</html>");
+    }
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>VisitorCounter</servlet-name>
+        <servlet-class>VisitorCounterServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>VisitorCounter</servlet-name>
+        <url-pattern>/visitor</url-pattern>
+    </servlet-mapping>
+
+</web-app>

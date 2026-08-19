@@ -1,0 +1,69 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+
+import javax.servlet.ServletConfig;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class LifecycleServlet extends HttpServlet {
+
+    public LifecycleServlet() {
+        System.out.println("1. Constructor called");
+    }
+
+    @Override
+    public void init(ServletConfig config)
+            throws ServletException {
+
+        super.init(config);
+
+        System.out.println("2. init() called");
+    }
+
+    @Override
+    protected void service(HttpServletRequest request,
+                           HttpServletResponse response)
+            throws ServletException, IOException {
+
+        System.out.println("3. service() called");
+
+        response.setContentType("text/html");
+
+        PrintWriter out = response.getWriter();
+
+        out.println("<html><body>");
+
+        out.println("<h2>Servlet Lifecycle</h2>");
+
+        out.println("<p>Constructor → init() → service() → destroy()</p>");
+
+        out.println("<p>Service method is processing the request.</p>");
+
+        out.println("</body></html>");
+    }
+
+    @Override
+    public void destroy() {
+
+        System.out.println("4. destroy() called");
+    }
+}
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         version="3.1">
+
+    <servlet>
+        <servlet-name>LifecycleServlet</servlet-name>
+        <servlet-class>LifecycleServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LifecycleServlet</servlet-name>
+        <url-pattern>/lifecycle</url-pattern>
+    </servlet-mapping>
+
+</web-app>
