@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Registration</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #eee;
+        }
+
+        .form {
+            width: 400px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #message {
+            margin-top: 15px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="form">
+
+    <h2>Student Registration</h2>
+
+    <form onsubmit="return validateForm()">
+
+        <input type="text" id="name" placeholder="Enter Name">
+
+        <input type="email" id="email" placeholder="Enter Email">
+
+        <input type="password" id="password" placeholder="Enter Password">
+
+        <input type="text" id="mobile" placeholder="Enter Mobile Number">
+
+        <select id="course">
+            <option value="">Select Course</option>
+            <option>B.Tech IT</option>
+            <option>B.Tech CSE</option>
+            <option>B.Tech ECE</option>
+        </select>
+
+        <button type="submit">Register</button>
+
+    </form>
+
+    <p id="message"></p>
+
+</div>
+
+<script>
+function validateForm() {
+
+    let name = document.getElementById("name").value;
+    let email = document.getElementById("email").value;
+    let password = document.getElementById("password").value;
+    let mobile = document.getElementById("mobile").value;
+    let course = document.getElementById("course").value;
+
+    let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+    let mobilePattern = /^[0-9]{10}$/;
+
+    if (name == "") {
+        alert("Enter your name");
+        return false;
+    }
+
+    if (!email.match(emailPattern)) {
+        alert("Enter a valid email");
+        return false;
+    }
+
+    if (password.length < 6) {
+        alert("Password must contain at least 6 characters");
+        return false;
+    }
+
+    if (!mobile.match(mobilePattern)) {
+        alert("Enter a valid 10-digit mobile number");
+        return false;
+    }
+
+    if (course == "") {
+        alert("Select a course");
+        return false;
+    }
+
+    document.getElementById("message").innerHTML =
+        "Registration Successful!";
+
+    return false;
+}
+</script>
+
+</body>
+</html>

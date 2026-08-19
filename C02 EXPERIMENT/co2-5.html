@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>College Website</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial;
+        }
+
+        header {
+            padding: 25px;
+            text-align: center;
+            background: #333;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            padding: 15px;
+            background: #555;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .container {
+            display: flex;
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .card {
+            flex: 1;
+            padding: 25px;
+            border: 1px solid #aaa;
+            text-align: center;
+        }
+
+        footer {
+            padding: 20px;
+            text-align: center;
+            background: #333;
+            color: white;
+        }
+
+        @media(max-width:600px) {
+
+            nav {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>ABC Engineering College</h1>
+    <p>Welcome to our College</p>
+</header>
+
+<nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Courses</a>
+    <a href="#">Contact</a>
+</nav>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Engineering</h2>
+        <p>Quality engineering education.</p>
+    </div>
+
+    <div class="card">
+        <h2>Technology</h2>
+        <p>Modern computer laboratories.</p>
+    </div>
+
+    <div class="card">
+        <h2>Campus</h2>
+        <p>Beautiful and friendly campus.</p>
+    </div>
+
+</div>
+
+<footer>
+    © 2026 ABC Engineering College
+</footer>
+
+</body>
+</html>

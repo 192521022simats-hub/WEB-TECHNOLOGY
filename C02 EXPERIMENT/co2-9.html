@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Shopping Cart</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background: #eee;
+        }
+
+        .shop {
+            width: 600px;
+            margin: 40px auto;
+            padding: 25px;
+            background: white;
+            box-shadow: 0 0 10px gray;
+        }
+
+        .product {
+            padding: 15px;
+            margin: 10px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 8px 15px;
+        }
+
+        #bill {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="shop">
+
+    <h1>Shopping Cart</h1>
+
+    <div class="product">
+        <b>Laptop</b> - ₹50000
+        <button onclick="addProduct('Laptop',50000)">
+            Add
+        </button>
+    </div>
+
+    <div class="product">
+        <b>Mouse</b> - ₹800
+        <button onclick="addProduct('Mouse',800)">
+            Add
+        </button>
+    </div>
+
+    <div class="product">
+        <b>Keyboard</b> - ₹1500
+        <button onclick="addProduct('Keyboard',1500)">
+            Add
+        </button>
+    </div>
+
+    <div id="bill">
+        Total: ₹0
+    </div>
+
+</div>
+
+<script>
+
+let cart = [];
+
+function addProduct(name, price) {
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    calculateBill();
+}
+
+function calculateBill() {
+
+    let total = 0;
+
+    cart.forEach(function(product) {
+        total += product.price;
+    });
+
+    let tax = total * 0.05;
+    let finalTotal = total + tax;
+
+    document.getElementById("bill").innerHTML =
+        "Items: " + cart.length + "<br>" +
+        "Subtotal: ₹" + total + "<br>" +
+        "Tax (5%): ₹" + tax.toFixed(2) + "<br>" +
+        "Total: ₹" + finalTotal.toFixed(2);
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Digital Clock and Exam Countdown</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #222;
+            color: white;
+            padding-top: 80px;
+        }
+
+        #clock {
+            font-size: 50px;
+            margin: 20px;
+        }
+
+        #timer {
+            font-size: 40px;
+            color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>Digital Clock</h1>
+
+<div id="clock"></div>
+
+<h2>Examination Countdown</h2>
+
+<div id="timer">10:00</div>
+
+<script>
+
+function updateClock() {
+
+    let now = new Date();
+
+    document.getElementById("clock").innerHTML =
+        now.toLocaleTimeString();
+}
+
+setInterval(updateClock, 1000);
+
+updateClock();
+
+let time = 600;
+
+function countdown() {
+
+    let minutes = Math.floor(time / 60);
+    let seconds = time % 60;
+
+    document.getElementById("timer").innerHTML =
+        minutes + ":" + (seconds < 10 ? "0" : "") + seconds;
+
+    if (time > 0) {
+        time--;
+    } else {
+        alert("Examination Time Over!");
+    }
+}
+
+setInterval(countdown, 1000);
+
+</script>
+
+</body>
+</html>
